@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
       setCartItems(cartData);
     }
 
-    const getCartCout = () => {
+    const getCartCount = () => {
       let totalCount = 0;
       for (const items in cartItems) {
         for(const item in cartItems[items]){
@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
             products , currency , delivery_free,
             search, setSearch,showSearch,setShowSearch,
             cartItems, addToCart,
-            getCartCout
+            getCartCount
     }
   return (
     <ShopContext.Provider value={value}>
