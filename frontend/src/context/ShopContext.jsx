@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
 
       if (cartData[itemId]) {
         if (cartData[itemId][size]) {
-          cartData[itemId][size] += 1;         
+          cartData[itemId][size] += 1;      
         }
         else {
           cartData[itemId][size] = 1;
@@ -64,11 +64,29 @@ const ShopContextProvider = (props) => {
       setCartItems(cartData);
     }
 
+    const getCartAmount = async => {
+      let totalAmount = 0;
+      for(const items in cartItems){
+        let itemInfo = products.find((product)=> product._id === items);
+        for(const item in cartItems[items]){
+          try {
+            if (cartItems[items][item] > 0) {
+              totalAmount += itemInfo.price * cartItems[items][item];
+            }
+          } catch (error){
+
+          }
+        }
+      }
+      return totalAmount;
+    }
+
     const value = {
             products , currency , delivery_free,
             search, setSearch,showSearch,setShowSearch,
             cartItems, addToCart,
-            getCartCount,updateQuantity
+            getCartCount,updateQuantity,
+            getCartAmount
     }
   return (
     <ShopContext.Provider value={value}>
